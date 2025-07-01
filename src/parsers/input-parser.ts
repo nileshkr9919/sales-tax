@@ -1,6 +1,5 @@
-import {Item} from '../models';
-
-import {EXEMPT_KEYWORDS} from '../constants/tax.constants';
+import {Item} from '../models/item.model';
+import {detectCategory} from '../utils/category.util';
 
 export class InputParser {
   parse(input: string): Item[] {
@@ -19,8 +18,7 @@ export class InputParser {
       const description = match[2];
       const price = parseFloat(match[3]);
       const imported = /imported/.test(description);
-      const lowerDesc = description.toLowerCase();
-      const exempt = EXEMPT_KEYWORDS.some((word) => lowerDesc.includes(word));
+      const category = detectCategory(description);
 
       for (let i = 0; i < quantity; i++) {
         items.push(
@@ -28,7 +26,7 @@ export class InputParser {
             description.replace('imported ', '').replace('imported', '').trim(),
             price,
             imported,
-            exempt,
+            category,
           ),
         );
       }

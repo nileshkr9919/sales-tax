@@ -1,14 +1,16 @@
+import {ItemCategory} from '../enums';
+
 export class Item {
   name: string;
   price: number;
   imported: boolean;
-  exempt: boolean;
+  category: ItemCategory;
 
-  constructor(name: string, price: number, imported: boolean, exempt: boolean) {
+  constructor(name: string, price: number, imported: boolean, category: ItemCategory) {
     this.name = name;
     this.price = price;
     this.imported = imported;
-    this.exempt = exempt;
+    this.category = category;
   }
 
   isImported(): boolean {
@@ -16,6 +18,6 @@ export class Item {
   }
 
   isExempt(): boolean {
-    return this.exempt;
+    return [ItemCategory.BOOK, ItemCategory.FOOD, ItemCategory.MEDICAL].includes(this.category);
   }
 }
