@@ -1,0 +1,29 @@
+{
+  "name": "sales-tax",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "mocha -r ts-node/register tests/**/*.test.ts",
+    "coverage": "nyc --reporter=text --reporter=lcov --reporter=html mocha -r ts-node/register tests/**/*.test.ts",
+    "start": "npm run build && node dist/index.js",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^24.0.8",
+    "@types/sinon": "^17.0.4",
+    "mocha": "^11.7.1",
+    "nyc": "^17.1.0",
+    "prettier": "^3.6.2",
+    "sinon": "^21.0.0",
+    "ts-node": "^10.9.2"
+  }
+}
